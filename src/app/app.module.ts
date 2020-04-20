@@ -1,3 +1,5 @@
+import { UserService } from './services/user.service';
+import { environment } from './../environments/environment';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
@@ -9,6 +11,15 @@ import { AdminProductsComponent } from './admin/admin-products/admin-products.co
 import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { LogOutComponent } from './log-out/log-out.component';
+import { LogInComponent } from './log-in/log-in.component';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AuthGuardService } from './services/auth-guard.service';
+import { AuthService } from './services/auth.service';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,15 +28,23 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     MyOrdersComponent,
     AdminProductsComponent,
     AdminOrdersComponent,
-    ShoppingCartComponent
+    ShoppingCartComponent,
+    LogOutComponent,
+    LogInComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
-
+    AngularFireDatabaseModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule
   ],
-  providers: [],
+  providers:
+   [ AuthService ,
+    AuthGuardService,
+    UserService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
