@@ -9,7 +9,7 @@ templateUrl: './app.component.html',
 styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  constructor( private userser: UserService, private authservice: AuthService, private route: ActivatedRoute, router: Router) {
+  constructor( private userser: UserService, private authservice: AuthService, private route: ActivatedRoute, router: Router){
     this.authservice.user$.subscribe(user => {
       if (user) {
         this.userser.save(user);
