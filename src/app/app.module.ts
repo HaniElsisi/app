@@ -1,3 +1,4 @@
+import { AdminAuthGuardService } from './services/admin-auth-guard.service';
 import { UserService } from './services/user.service';
 import { environment } from './../environments/environment';
 import { BrowserModule } from '@angular/platform-browser';
@@ -18,6 +19,9 @@ import { LogInComponent } from './log-in/log-in.component';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AuthGuardService } from './services/auth-guard.service';
 import { AuthService } from './services/auth.service';
+import { ProductFormComponent } from './Admin/product-form/product-form.component';
+import { CategoriesService } from './services/categories.service';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -31,6 +35,7 @@ import { AuthService } from './services/auth.service';
     ShoppingCartComponent,
     LogOutComponent,
     LogInComponent,
+    ProductFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,12 +43,15 @@ import { AuthService } from './services/auth.service';
     NgbModule,
     AngularFireDatabaseModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    FormsModule,
   ],
   providers:
    [ AuthService ,
     AuthGuardService,
-    UserService
+    UserService,
+    AdminAuthGuardService,
+    CategoriesService
   ],
   bootstrap: [AppComponent]
 })
